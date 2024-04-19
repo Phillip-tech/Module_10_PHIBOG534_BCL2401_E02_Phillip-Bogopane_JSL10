@@ -38,9 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const jsConcepts = new Set(['closure', 'scope', 'async', 'hoisting']);
             const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
 
+             // 🪲 Bug: Incorrect function call
             // Finding common concepts between JavaScript and React
             const commonConcepts = findIntersection(jsConcepts, reactConcepts);
-            
+
             // Displaying the common concepts in 'room2Result' element
             document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
         });
