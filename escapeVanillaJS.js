@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
 // Function to find the most recent book from an array of books
 
 function findMostRecentBook(books) {
@@ -80,11 +79,12 @@ function findMostRecentBook(books) {
     });
 }
 
-function findIntersection(setA, setB) {
-    // 🪲 Bug: Incorrect logic
-    const intersection = new Set([...setA]);
-    return intersection;
-}
+
+// Function to find the intersection of two sets
+// 🪲 Bug: Incorrect logic
+
+function findIntersection(setA, setB) { const intersection = new Set([...setA].filter(x => setB.has(x))); return intersection; }
+
 
 async function navigateLabyrinth(directions) {
     for (let direction of directions) {
