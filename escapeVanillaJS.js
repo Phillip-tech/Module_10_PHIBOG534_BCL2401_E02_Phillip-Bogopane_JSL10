@@ -1,12 +1,23 @@
+
+    // Event listener for when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", () => {
-    // 🪲 Bug: Incorrect ID used for attaching the event listener
-    document.getElementById("solveRoom").addEventListener("click", () => {
+     // 🪲 Bug: Incorrect ID used for attaching the event listener
+    // Event listener for solving Room 1
+    document.getElementById("solveRoom1").addEventListener("click", () => {
+
+        // Fetching data from 'books.json'
         fetch('books.json') 
             .then(response => response.json())
             .then(books => {
+                // Finding the most recent book
                 const mostRecentBook = findMostRecentBook(books);
-                // 🪲 Bug: Incorrect element ID
-                document.getElementById("resultRoom1").textContent = `The key to the next room is: ${mostRecentBook.title}`;
+
+                 // 🪲 Bug: Incorrect element ID
+                // Displaying the title of the most recent book in 'room1Result' element
+                document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
+            })
+            .catch(error => {
+                console.error('Error fetching books.json:', error);
             });
     });
 
