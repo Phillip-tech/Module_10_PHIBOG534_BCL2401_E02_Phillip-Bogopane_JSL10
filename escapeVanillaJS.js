@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     });
 
- 
 
         // Event listener for solving Room 2
         document.getElementById("solveRoom2").addEventListener("click", () => {
@@ -39,19 +38,36 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
         });
 
-    // 🪲 Bug: Asynchronous function ?
-    document.getElementById("solveRoom3").addEventListener("click", () => {
-        fetch('directions.json') 
-            .then(response => response.json())
-            .then(directions => {
-                navigateLabyrinth(directions)
-                    .then(message => {
-                        // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
-                    });
-            });
-    });
+
+  // 🪲 Bug: Asynchronous function ?
+ // Event listener for solving Room 3
+
+ document.getElementById("solveRoom3").addEventListener("click", () => {
+    // Fetching data from 'directions.json'
+    fetch('directions.json') 
+        .then(response => response.json())
+        .then(directions => {
+            // Navigating through the labyrinth using fetched directions
+            navigateLabyrinth(directions)
+                .then(message => {
+
+                     // 🪲 Bug: Incorrect method
+                    // Displaying the final message in 'room3Result' element
+                    document.getElementById("room3Result").innerHTML = message;
+                })
+                .catch(error => {
+                    console.error('Error navigating labyrinth:', error);
+                });
+        })
+        .catch(error => {
+            console.error('Error fetching directions.json:', error);
+        });
 });
+
+
+
+
+
 
 function findMostRecentBook(books) {
     // 🪲 Bug: Logic error
