@@ -39,39 +39,45 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-  // 🪲 Bug: Asynchronous function ?
- // Event listener for solving Room 3
-
- document.getElementById("solveRoom3").addEventListener("click", () => {
-    // Fetching data from 'directions.json'
-    fetch('directions.json') 
-        .then(response => response.json())
-        .then(directions => {
-            // Navigating through the labyrinth using fetched directions
-            navigateLabyrinth(directions)
-                .then(message => {
+      // 🪲 Bug: Asynchronous function ?
+     // Event listener for solving Room 3
+     
+     document.getElementById("solveRoom3").addEventListener("click", () => {
+        // Fetching data from 'directions.json'
+        fetch('directions.json') 
+            .then(response => response.json())
+            .then(directions => {
+                // Navigating through the labyrinth using fetched directions
+                navigateLabyrinth(directions)
+                    .then(message => {
 
                      // 🪲 Bug: Incorrect method
                     // Displaying the final message in 'room3Result' element
-                    document.getElementById("room3Result").innerHTML = message;
-                })
-                .catch(error => {
-                    console.error('Error navigating labyrinth:', error);
-                });
-        })
-        .catch(error => {
-            console.error('Error fetching directions.json:', error);
-        });
+
+                        document.getElementById("room3Result").innerHTML = message;
+                    })
+                    .catch(error => {
+                        console.error('Error navigating labyrinth:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error fetching directions.json:', error);
+            });
+    });
 });
 
 
 
 
-
+// Function to find the most recent book from an array of books
 
 function findMostRecentBook(books) {
     // 🪲 Bug: Logic error
-    return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+    return books.reduce((mostRecent, book) => {
+        const mostRecentDate = new Date(mostRecent.published);
+        const currentDate = new Date(book.published);
+        return currentDate > mostRecentDate ? book : mostRecent;
+    });
 }
 
 function findIntersection(setA, setB) {
