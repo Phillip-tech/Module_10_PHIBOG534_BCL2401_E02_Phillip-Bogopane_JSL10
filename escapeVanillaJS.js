@@ -30,6 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
+        // Event listener for solving Room 2
+        document.getElementById("solveRoom2").addEventListener("click", () => {
+
+             // 🪲 Bug: What's mssing from JS concepts?
+            // Defining JavaScript and React concept sets
+            const jsConcepts = new Set(['closure', 'scope', 'async', 'hoisting']);
+            const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
+
+            // Finding common concepts between JavaScript and React
+            const commonConcepts = findIntersection(jsConcepts, reactConcepts);
+            
+            // Displaying the common concepts in 'room2Result' element
+            document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
+        });
+
     // 🪲 Bug: Asynchronous function ?
     document.getElementById("solveRoom3").addEventListener("click", () => {
         fetch('directions.json') 
